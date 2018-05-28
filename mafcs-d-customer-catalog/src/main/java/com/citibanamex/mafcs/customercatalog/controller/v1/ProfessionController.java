@@ -54,8 +54,9 @@ public class ProfessionController {
 			@RequestHeader (name = "uuid", required = false) String uuid,
 			@RequestParam (value = "professionFilter", defaultValue="", required = false) String professionFilter){		
 
-		LOG.info("lineOfBusinessFilter request param {} " + professionFilter);
-		
+		LOG.info("client-id {}, Authorization {}, uuid {}, professionFilter {} ", 
+				clientId, authorization, uuid, professionFilter);
+				
 		long t0 = System.currentTimeMillis();		
 		ProfessionResponse response = professionService.getProfession(Util.validateFilter(professionFilter, "professionFilter"));
 		LOG.info("Time total elapsed RetrieveProfession: " + (System.currentTimeMillis() - t0) + " ms");

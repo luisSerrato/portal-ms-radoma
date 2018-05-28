@@ -56,7 +56,8 @@ public class LineOfBusinessController {
 			@RequestParam (value = "lineOfBusinessFilter", defaultValue="", required = false) String lineOfBusinessFilter){
 		
 		
-		LOG.info("lineOfBusinessFilter{} ",  lineOfBusinessFilter);
+		LOG.info("client-id {}, Authorization {}, uuid {}, lineOfBusinessFilter {} ", 
+				clientId, authorization, uuid, lineOfBusinessFilter);
 		
 		long t0 = System.currentTimeMillis();
 		LineofBusinessResponse response = lineOfBusinessService.getLineofBusiness(Util.validateFilter(lineOfBusinessFilter,"lineOfBusinessFilter"));

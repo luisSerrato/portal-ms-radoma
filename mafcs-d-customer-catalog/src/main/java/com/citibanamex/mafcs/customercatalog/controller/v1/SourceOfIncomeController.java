@@ -47,6 +47,9 @@ public class SourceOfIncomeController {
 			@RequestHeader (name = "Authorization", required = false) String authorization,
 			@RequestHeader (name = "uuid", required = false) String uuid){	
 		
+		LOG.info("client-id {}, Authorization {}, uuid {}", 
+				clientId, authorization, uuid);
+		
 		long t0 = System.currentTimeMillis();
 		SourceOfIncomeResponse response = sourceOfIncomeService.getSourceOfIncome();
 		LOG.info("Time total elapsed RetrieveSourceOfIncome: " + (System.currentTimeMillis() - t0) + " ms");

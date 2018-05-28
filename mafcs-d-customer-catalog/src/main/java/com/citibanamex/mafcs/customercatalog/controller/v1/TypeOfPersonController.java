@@ -47,6 +47,8 @@ public class TypeOfPersonController {
 			@RequestHeader (name = "Authorization", required = false) String authorization,
 			@RequestHeader (name = "uuid", required = false) String uuid){	
 		
+		LOG.info("client-id {}, Authorization {}, uuid {}", clientId, authorization, uuid);
+		
 		long t0 = System.currentTimeMillis();
 		PersonTypeResponse response = typeOfPersonService.getTypeOfPerson();
 		LOG.info("Time total elapsed RetrievePersonType: " + (System.currentTimeMillis() - t0) + " ms");
