@@ -1,0 +1,35 @@
+info:
+  component: Service for consultation of catalogs C080 for information regarding customer.
+
+logging:
+  level:
+    org.springframework.web: INFO
+    com.citibanamex.mafcs.customercatalog: DEBUG
+
+feign:
+#  url: https://www.mobileuat.banamex.com
+  url: http://169.193.226.161:50723
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 120000
+
+#Security actuator
+management:
+  context-path: /actuator
+
+  security:
+    enabled: true
+    
+security:
+  basic:
+    enabled: false
+  
+  user:
+    name: af-admin
+    password: ${cipher}9afd7f9c918ce89112567fd3ee1404940abe6eebca0d535f7ebef6776f227227

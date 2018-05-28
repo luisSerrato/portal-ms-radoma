@@ -1,0 +1,19 @@
+applications: 
+- memory: 1024MB 
+  instances: '1' 
+  name: qr1-mx-api-label-catalogs
+  host: mx-api-label-catalogs
+  domain: cfapps-qr1-perf.lac.nsroot.net
+  timeout: 600
+  services: 
+  	- configServerURL
+    - eurekaURL
+  buildpack: citi_java_3_8_1_3 
+  env:
+    SPRING_PROFILES_ACTIVE: PERF,consumerservices
+    JAVA_OPTS: '-Djava.library.path=\libjcprov'
+    CITI_APP_METADATA: >
+      {
+        "source-id": "171086",
+        "foundation-instance-id": "170567" 
+      }

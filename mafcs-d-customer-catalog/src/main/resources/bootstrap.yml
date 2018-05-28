@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: mafcs-d-customer-catalog
+  cloud:
+    config:
+      name: ${spring.application.name}
+      uri: ${vcap.services.configServerURL.credentials.uri:http://localhost:8888}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.eurekaURL.credentials.uri}
+#      defaultZone: http://localhost:8761/eureka/

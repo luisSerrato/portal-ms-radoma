@@ -1,0 +1,8 @@
+spring:
+  application:
+    name:  mafcs-d-label-catalogs
+  config:
+    name: ${spring.application.name}
+  cloud:
+    config:
+      uri: ${vcap.services.configServerURL.credentials.uri:http://localhost:8888}
