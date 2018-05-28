@@ -1,3 +1,16 @@
+/*
+ * Copyright (C) 2018 by Citigroup. All rights reserved. Citigroup claims copyright in this computer
+ * program as an unpublished work, one or more versions of which were first used to provide services
+ * to customers on the dates indicated in the foregoing notice. Claim of copyright does not imply
+ * waiver of other rights.
+ *
+ * NOTICE OF PROPRIETARY RIGHTS
+ *
+ * This program is a confidential trade secret and the property of Citigroup. Use, examination,
+ * reproduction, disassembly, decompiling, transfer and/or disclosure to others of all or any part
+ * of this software program are strictly prohibited except by express written agreement with
+ * Citigroup.
+ */
 package com.citibanamex.mafcs.customercatalog.errorhandling;
 
 import java.util.ArrayList;
@@ -27,14 +40,14 @@ import com.citibanamex.mafcs.customercatalog.util.Constants;
 @ControllerAdvice
 public class ErrorResolver {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ErrorResolver.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ErrorResolver.class);
 
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
 	public ErrorResponse resolveException(HttpServletRequest req, Exception e) {
 		
-		logger.error(e.getMessage(), e);
+		LOG.error(e.getMessage(), e);
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setType(ErrorType.ERROR.name());
 		errorResponse.setCode(Constants.EXCEPTION_ERROR_CODE);
@@ -48,7 +61,7 @@ public class ErrorResolver {
 	@ResponseBody
 	public ErrorResponse resolveNumberFormatException(HttpServletRequest req, Exception e) {
 		
-		logger.error(e.getMessage(), e);
+		LOG.error(e.getMessage(), e);
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setType(ErrorType.ERROR.name());
 		errorResponse.setCode(Constants.EXCEPTION_ERROR_CODE);
@@ -62,7 +75,7 @@ public class ErrorResolver {
 	@ResponseBody
 	public ErrorResponse resolveValidationException(HttpServletRequest req, Exception e) {
 		
-		logger.error(e.getMessage(), e);
+		LOG.error(e.getMessage(), e);
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setType(ErrorType.ERROR.name());
 		errorResponse.setCode(Constants.VALIDATIONEXCEPTION_ERROR_CODE);
@@ -76,7 +89,7 @@ public class ErrorResolver {
 	@ResponseBody
 	public ErrorResponse resolveBadRequestFeignException(HttpServletRequest req, Exception e) {
 		
-		logger.error(e.getMessage(), e);
+		LOG.error(e.getMessage(), e);
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setType(ErrorType.ERROR.name());
 		errorResponse.setCode(Constants.BADREQUESTFEIGNEXCEPTION_ERROR_CODE);
@@ -90,7 +103,7 @@ public class ErrorResolver {
 	@ResponseBody
 	public ErrorResponse resolveHttpMessageNotReadableException(HttpServletRequest req, HttpMessageNotReadableException e) {
 		
-		logger.error(e.getMessage(), e);
+		LOG.error(e.getMessage(), e);
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setType(ErrorType.INVALID.name());
 		errorResponse.setCode(Constants.HTTPMESSAGENOTREADABLEEXCEPTION_ERROR_CODE);
@@ -104,7 +117,7 @@ public class ErrorResolver {
 	@ResponseBody
 	public ErrorResponse resolveMethodArgumentNotValidException(HttpServletRequest req, MethodArgumentNotValidException e) {
 		
-		logger.error(e.getMessage(), e);
+		LOG.error(e.getMessage(), e);
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setType(ErrorType.INVALID.name());
 		errorResponse.setCode(Constants.HTTPMESSAGENOTREADABLEEXCEPTION_ERROR_CODE);
@@ -124,7 +137,7 @@ public class ErrorResolver {
 	@ResponseBody
 	public ErrorResponse resolveDataNotFoundExceptionException(HttpServletRequest req, DataNotFoundException e) {
 		
-		logger.error(e.getMessage(), e);
+		LOG.error(e.getMessage(), e);
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setType(ErrorType.ERROR.name());
 		errorResponse.setCode(Constants.DATANOTFOUNDEXCEPTION_ERROR_CODE);
@@ -140,7 +153,7 @@ public class ErrorResolver {
 	@ResponseBody
 	public ErrorResponse resolveCcC080AddressClientException(HttpServletRequest req, Exception e) {
 		
-		logger.error(e.getMessage(), e);
+		LOG.error(e.getMessage(), e);
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setType(ErrorType.ERROR.name());
 		errorResponse.setCode(Constants.CCC080CUSTOMERCLIENTEXCEPTION_ERROR_CODE);
@@ -154,7 +167,7 @@ public class ErrorResolver {
 	@ResponseBody
 	public ErrorResponse resolverFilterFormatException(HttpServletRequest req, FilterFormatException e) {
 		
-		logger.error(e.getMessage(), e);
+		LOG.error(e.getMessage(), e);
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setType(ErrorType.ERROR.name());
 		errorResponse.setCode(Constants.VALIDATIONEXCEPTION_ERROR_CODE);

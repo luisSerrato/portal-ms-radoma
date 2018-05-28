@@ -1,3 +1,16 @@
+/*
+ * Copyright (C) 2018 by Citigroup. All rights reserved. Citigroup claims copyright in this computer
+ * program as an unpublished work, one or more versions of which were first used to provide services
+ * to customers on the dates indicated in the foregoing notice. Claim of copyright does not imply
+ * waiver of other rights.
+ *
+ * NOTICE OF PROPRIETARY RIGHTS
+ *
+ * This program is a confidential trade secret and the property of Citigroup. Use, examination,
+ * reproduction, disassembly, decompiling, transfer and/or disclosure to others of all or any part
+ * of this software program are strictly prohibited except by express written agreement with
+ * Citigroup.
+ */
 package com.citibanamex.mafcs.customercatalog.util;
 
 import java.io.IOException;
@@ -18,7 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Util {
 	
-	private static final Logger logger = LoggerFactory.getLogger(Util.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Util.class);
 	
 	@SuppressWarnings("unchecked")
 	public static void resultC080CamposMasDatos(Object response, HashMap<String, Object> campos, List<Object> datos){
@@ -66,7 +79,7 @@ public class Util {
 			root = mapper.readTree(responseString);
 			mapResponseString = (HashMap<String, Object>) mapper.convertValue(root.at("/dat"), Map.class);
 		} catch (IOException e) {
-			logger.error("logger " , e);
+			LOG.error("logger " , e);
 			throw new ValidationException(Constants.VALIDATION_ERROR);
 		}
 
@@ -75,7 +88,7 @@ public class Util {
 	
 	public static String validateFilter(String filter, String varName){
 		
-		logger.debug(varName + ":" + filter);
+		LOG.debug(varName + ":" + filter);
 		filter = filter.replaceAll(",{2,}", ",").replaceAll("\\s{2,}", " ").trim().toUpperCase();
 		if(filter.equals("") || filter==null || filter.length()==0){
 			return "";

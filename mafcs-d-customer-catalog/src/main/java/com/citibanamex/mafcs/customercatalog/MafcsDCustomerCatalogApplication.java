@@ -1,3 +1,17 @@
+/*
+ * Copyright (C) 2018 by Citigroup. All rights reserved. Citigroup claims copyright in this computer
+ * program as an unpublished work, one or more versions of which were first used to provide services
+ * to customers on the dates indicated in the foregoing notice. Claim of copyright does not imply
+ * waiver of other rights.
+ *
+ * NOTICE OF PROPRIETARY RIGHTS
+ *
+ * This program is a confidential trade secret and the property of Citigroup. Use, examination,
+ * reproduction, disassembly, decompiling, transfer and/or disclosure to others of all or any part
+ * of this software program are strictly prohibited except by express written agreement with
+ * Citigroup.
+ */
+
 package com.citibanamex.mafcs.customercatalog;
 
 import org.slf4j.Logger;
@@ -5,7 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
@@ -22,13 +36,13 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@EnableDiscoveryClient
+@EnableEurekaClient
 @EnableFeignClients
 @EnableCircuitBreaker
 @EnableSwagger2
 public class MafcsDCustomerCatalogApplication {
 	
-	private final Logger LOGGER = LoggerFactory.getLogger(MafcsDCustomerCatalogApplication.class);
+	private final Logger LOG = LoggerFactory.getLogger(MafcsDCustomerCatalogApplication.class);
 	
 
 	public static void main(String[] args) {
@@ -51,7 +65,7 @@ public class MafcsDCustomerCatalogApplication {
 	@Bean
 	public ErrorDecoder errorDecoder() {
 		return (methodKey, response) -> {
-			LOGGER.info("errorDecoder.response: {}", response.toString());
+			LOG.info("errorDecoder.response: {}", response.toString());
 
 			return new MicroserviceClientException();
 		};

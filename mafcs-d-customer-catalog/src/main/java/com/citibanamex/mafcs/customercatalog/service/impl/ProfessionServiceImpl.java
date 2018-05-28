@@ -1,3 +1,16 @@
+/*
+ * Copyright (C) 2018 by Citigroup. All rights reserved. Citigroup claims copyright in this computer
+ * program as an unpublished work, one or more versions of which were first used to provide services
+ * to customers on the dates indicated in the foregoing notice. Claim of copyright does not imply
+ * waiver of other rights.
+ *
+ * NOTICE OF PROPRIETARY RIGHTS
+ *
+ * This program is a confidential trade secret and the property of Citigroup. Use, examination,
+ * reproduction, disassembly, decompiling, transfer and/or disclosure to others of all or any part
+ * of this software program are strictly prohibited except by express written agreement with
+ * Citigroup.
+ */
 package com.citibanamex.mafcs.customercatalog.service.impl;
 
 import java.util.ArrayList;
@@ -24,7 +37,7 @@ import com.citibanamex.mafcs.customercatalog.viewmodel.profession.ProfessionResp
 @Service("professionService")
 public class ProfessionServiceImpl implements ProfessionService{
 
-	private static final Logger logger = LoggerFactory.getLogger(ProfessionService.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ProfessionService.class);
 	
 	@Autowired
 	private C080Client c080Client;
@@ -36,7 +49,7 @@ public class ProfessionServiceImpl implements ProfessionService{
 	@Override
 	public ProfessionResponse getProfession(String professionFilter) {
 		
-		logger.info("CustomerCatalog-ProfessionService");
+		LOG.info("CustomerCatalog-ProfessionService");
 		String sql;
 		HashMap<String, Object> campos = new HashMap<>();
 		List<Object> professionAux = new ArrayList<>();		
@@ -48,7 +61,7 @@ public class ProfessionServiceImpl implements ProfessionService{
 			sql = "SELECT TOP 5 * FROM ( " + Constants.SQL_HERA_Profession_BY_DESC + " ) X WHERE X.DESCRIP LIKE '%"+professionFilter+"%' OR X.DESCRIP LIKE '%"+professionFilter+"%' ORDER BY 2";
 		}		
 		
-		logger.debug("QueryExecuted: " + sql);
+		LOG.debug("QueryExecuted: " + sql);
 		Object responseC080 = getDataFromC080(sql);		
 		Util.resultC080CamposMasDatos(responseC080, campos, professionAux);	
 		
@@ -78,8 +91,8 @@ public class ProfessionServiceImpl implements ProfessionService{
 		sqlRequest.setSql(sql);		
 		long t0 = System.currentTimeMillis();
 		Object responseDescripcion = c080Client.getInformationC080(sqlRequest);
-		logger.info("Time elapsed c080Client.getInformationC080: " + (System.currentTimeMillis() - t0) + " ms");
-		logger.info("responseDescripcion: " + Utils.getJson(responseDescripcion));
+		LOG.info("Time elapsed c080Client.getInformationC080: " + (System.currentTimeMillis() - t0) + " ms");
+		LOG.info("responseDescripcion: " + Utils.getJson(responseDescripcion));
 		if (responseDescripcion == null) {
 			throw new CcC080CustomerClientException("System C080 back unavailable");
 		}

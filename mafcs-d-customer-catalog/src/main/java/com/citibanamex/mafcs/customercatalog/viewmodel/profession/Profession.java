@@ -1,6 +1,21 @@
+/*
+ * Copyright (C) 2018 by Citigroup. All rights reserved. Citigroup claims copyright in this computer
+ * program as an unpublished work, one or more versions of which were first used to provide services
+ * to customers on the dates indicated in the foregoing notice. Claim of copyright does not imply
+ * waiver of other rights.
+ *
+ * NOTICE OF PROPRIETARY RIGHTS
+ *
+ * This program is a confidential trade secret and the property of Citigroup. Use, examination,
+ * reproduction, disassembly, decompiling, transfer and/or disclosure to others of all or any part
+ * of this software program are strictly prohibited except by express written agreement with
+ * Citigroup.
+ */
 package com.citibanamex.mafcs.customercatalog.viewmodel.profession;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 
 /**
@@ -8,6 +23,8 @@ import io.swagger.annotations.ApiModelProperty;
  * @version 1.0
  * @created 23-Jan-2018 5:01:54 PM
  */
+@Getter
+@Setter
 public class Profession {
 
 	/**
@@ -32,50 +49,6 @@ public class Profession {
 	public Profession(int professionCode, String professionName) {
 		super();
 		this.professionCode = professionCode;
-		this.professionName = professionName;
-	}
-
-	/**
-	 * Description = Get value of professionCode
-	 * Example = 43
-	 * Required = True
-	 * 
-	 * @return the value as int of professionCode
-	 */	
-	public int getProfessionCode() {
-		return professionCode;
-	}
-
-	/**
-	 * Description = Profession Code
-	 * Example = 43
-	 * Required = True
-	 * 
-	 * @param 	professionCode
-	 */	
-	public void setProfessionCode(int professionCode) {
-		this.professionCode = professionCode;
-	}
-
-	/**
-	 * Description = Profession Name
-	 * Example = ARRENDAMIENTO DUEÑO
-	 * Required = True
-	 * 
-	 * @return	the value as String of professionName
-	 */
-	public String getProfessionName() {
-		return professionName;
-	}
-
-	/**
-	 * Description = Profession Name
-	 * Example = ARRENDAMIENTO DUEÑO
-	 * Required = True
-	 * 
-	 * @param	professionName
-	 */
-	public void setProfessionName(String professionName) {
 		this.professionName = professionName;
 	}
 

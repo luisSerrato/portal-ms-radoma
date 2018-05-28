@@ -1,3 +1,16 @@
+/*
+ * Copyright (C) 2018 by Citigroup. All rights reserved. Citigroup claims copyright in this computer
+ * program as an unpublished work, one or more versions of which were first used to provide services
+ * to customers on the dates indicated in the foregoing notice. Claim of copyright does not imply
+ * waiver of other rights.
+ *
+ * NOTICE OF PROPRIETARY RIGHTS
+ *
+ * This program is a confidential trade secret and the property of Citigroup. Use, examination,
+ * reproduction, disassembly, decompiling, transfer and/or disclosure to others of all or any part
+ * of this software program are strictly prohibited except by express written agreement with
+ * Citigroup.
+ */
 package com.citibanamex.mafcs.customercatalog.service.impl;
 
 import java.util.ArrayList;
@@ -30,20 +43,20 @@ public class LineOfBusinessServiceImpl implements LineOfBusinessService {
 	@Autowired
 	private HeraFormatter heraFormatter;
 	
-	private static final Logger logger = LoggerFactory.getLogger(LineOfBusinessServiceImpl.class);
+	private static final Logger LOG = LoggerFactory.getLogger(LineOfBusinessServiceImpl.class);
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public LineofBusinessResponse getLineofBusiness(String lineOfBusinessFilter) {
 		
-		logger.info("CustomerCatalog-LineOfBusinessService");
+		LOG.info("CustomerCatalog-LineOfBusinessService");
 		String sql;
 		if(lineOfBusinessFilter.equals("")){
 			sql = Constants.SQL_HERA_LineOfBussiness_GET_ALL;
 		}else{
 			sql = "SELECT TOP 5 * FROM (" + Constants.SQL_HERA_LineOfBussiness_BY_DESC + ") X where X.DESCRIP LIKE '%"+lineOfBusinessFilter+"%' OR X.DESCRIP LIKE '%"+lineOfBusinessFilter+"%' ORDER BY 2";
 		}		
-		logger.debug("QueryExecuted: " + sql);
+		LOG.debug("QueryExecuted: " + sql);
 		Object responseC080 = getDataFromC080(sql);
 		
 		HashMap<String, Object> campos = new HashMap<>();
@@ -77,8 +90,8 @@ public class LineOfBusinessServiceImpl implements LineOfBusinessService {
 		sqlRequest.setSql(sql);		
 		long t0 = System.currentTimeMillis();
 		Object responseDescripcion = c080Client.getInformationC080(sqlRequest);
-		logger.info("Time elapsed c080Client.getInformationC080: " + (System.currentTimeMillis() - t0) + " ms");
-		logger.info("responseDescripcion: " + Utils.getJson(responseDescripcion));
+		LOG.info("Time elapsed c080Client.getInformationC080: " + (System.currentTimeMillis() - t0) + " ms");
+		LOG.info("responseDescripcion: " + Utils.getJson(responseDescripcion));
 		if (responseDescripcion == null) {
 			throw new CcC080CustomerClientException("System C080 back unavailable");
 		}

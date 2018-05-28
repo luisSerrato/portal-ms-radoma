@@ -1,3 +1,16 @@
+/*
+ * Copyright (C) 2018 by Citigroup. All rights reserved. Citigroup claims copyright in this computer
+ * program as an unpublished work, one or more versions of which were first used to provide services
+ * to customers on the dates indicated in the foregoing notice. Claim of copyright does not imply
+ * waiver of other rights.
+ *
+ * NOTICE OF PROPRIETARY RIGHTS
+ *
+ * This program is a confidential trade secret and the property of Citigroup. Use, examination,
+ * reproduction, disassembly, decompiling, transfer and/or disclosure to others of all or any part
+ * of this software program are strictly prohibited except by express written agreement with
+ * Citigroup.
+ */
 package com.citibanamex.mafcs.customercatalog.service.impl;
 
 //import java.io.IOException;
@@ -6,14 +19,10 @@ import java.util.HashMap;
 import java.util.List;
 //import java.util.Map;
 
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 
 //import com.citibanamex.itmt.ccutil.commons.Result;
 //import com.citibanamex.itmt.ccutil.constants.ConstantsMessages;
@@ -33,7 +42,7 @@ import com.citibanamex.mafcs.customercatalog.viewmodel.persontype.PersonTypeResp
 @Service("typeOfPersonService")
 public class TypeOfPersonServiceImpl implements TypeOfPersonService{
 
-	private static final Logger logger = LoggerFactory.getLogger(TypeOfPersonServiceImpl.class);
+	private static final Logger LOG = LoggerFactory.getLogger(TypeOfPersonServiceImpl.class);
 	
 	@Autowired
 	private C080Client c080Client;
@@ -42,8 +51,8 @@ public class TypeOfPersonServiceImpl implements TypeOfPersonService{
 	@Override
 	public PersonTypeResponse getTypeOfPerson() {
 		
-		logger.info("CustomerCatalog-TypeOfPersonService");
-		logger.debug("QueryExecuted: " + Constants.SQL_HERA_TypeOfPerson_BY_ID);
+		LOG.info("CustomerCatalog-TypeOfPersonService");
+		LOG.debug("QueryExecuted: " + Constants.SQL_HERA_TypeOfPerson_BY_ID);
 		
 		Object responseC080 = getDataFromC080(Constants.SQL_HERA_TypeOfPerson_BY_ID);		
 		HashMap<String, Object> campos = new HashMap<>();
@@ -74,8 +83,8 @@ public class TypeOfPersonServiceImpl implements TypeOfPersonService{
 		sqlRequest.setSql(sql);		
 		long t0 = System.currentTimeMillis();
 		Object responseDescripcion = c080Client.getInformationC080(sqlRequest);
-		logger.info("Time elapsed c080Client.getInformationC080: " + (System.currentTimeMillis() - t0) + " ms");
-		logger.info("responseDescripcion: " + Utils.getJson(responseDescripcion));
+		LOG.info("Time elapsed c080Client.getInformationC080: " + (System.currentTimeMillis() - t0) + " ms");
+		LOG.info("responseDescripcion: " + Utils.getJson(responseDescripcion));
 		if (responseDescripcion == null) {
 			throw new CcC080CustomerClientException("System C080 back unavailable");
 		}
