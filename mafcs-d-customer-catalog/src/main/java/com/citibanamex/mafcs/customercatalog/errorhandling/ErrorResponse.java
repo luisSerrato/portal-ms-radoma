@@ -11,6 +11,7 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.errorhandling;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -21,17 +22,15 @@ import lombok.Setter;
 @Setter
 public class ErrorResponse {
 
-	@ApiModelProperty(required = true)
-	private String type;
-	@ApiModelProperty(required = true)
-	private String code;
-	@ApiModelProperty(required = true)
-	private String details;
-	@ApiModelProperty(required = true)
-	private String location;
-	@ApiModelProperty(required = true)
-	private String moreInfo;
-	
-	
-	
+  @ApiModelProperty(required = true)
+  private String type;
+  @ApiModelProperty(required = true)
+  private String code;
+  @ApiModelProperty(required = true)
+  private String details;
+  @ApiModelProperty(required = true)
+  private String location;
+  @ApiModelProperty(required = true)
+  private String moreInfo;
+
 }

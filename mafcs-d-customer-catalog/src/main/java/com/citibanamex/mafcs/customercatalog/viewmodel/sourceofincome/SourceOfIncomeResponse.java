@@ -11,6 +11,7 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.viewmodel.sourceofincome;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -29,15 +30,11 @@ import java.util.List;
 @Setter
 public class SourceOfIncomeResponse {
 
-	@ApiModelProperty(required = true)
-	public List<IncomeSource> income;
+  @ApiModelProperty(required = true)
+  public List<IncomeSource> income;
 
-	public SourceOfIncomeResponse(){
-		this.setIncome(new ArrayList<>());
-	}
-	
-	public void finalize() throws Throwable {
-
-	}
+  public SourceOfIncomeResponse() {
+    this.setIncome(new ArrayList<>());
+  }
 
 }

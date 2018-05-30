@@ -11,12 +11,12 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.viewmodel.profession;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-
 
 /**
  * @author rp90642
@@ -27,29 +27,30 @@ import lombok.Setter;
 @Setter
 public class Profession {
 
-	/**
-	 * Description = Profession Code
-	 * Example = 43
-	 * Required = True
-	 */
-	@ApiModelProperty(value = "professionCode", required = true)
-	private int professionCode;
-	/**
-	 * Description = Profession Name
-	 * Example = ARRENDAMIENTO DUEÑO
-	 * Required = True
-	 */
-	@ApiModelProperty(value = "professionName", required = true)
-	private String professionName;
+  /**
+   * Description = Profession Code Example = 43 Required = True.
+   */
+  @ApiModelProperty(value = "professionCode", required = true)
+  private int professionCode;
+  /**
+   * Description = Profession Name Example = ARRENDAMIENTO DUEÑO Required = True.
+   */
+  @ApiModelProperty(value = "professionName", required = true)
+  private String professionName;
 
-	public Profession(){
+  public Profession() {
 
-	}
+  }
 
-	public Profession(int professionCode, String professionName) {
-		super();
-		this.professionCode = professionCode;
-		this.professionName = professionName;
-	}
+  /**
+   * To init profession.
+   * @param professionCode.
+   * @param professionName.
+   */
+  public Profession(int professionCode, String professionName) {
+    super();
+    this.professionCode = professionCode;
+    this.professionName = professionName;
+  }
 
 }

@@ -11,13 +11,11 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.errorhandling;
 
 public enum ErrorType {
 
-	ERROR,
-	WARN,
-	INVALID,
-	FATAL;
-	
+  ERROR, WARN, INVALID, FATAL;
+
 }

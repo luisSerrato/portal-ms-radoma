@@ -11,18 +11,19 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
-package com.citibanamex.mafcs.customercatalog.c080client;
 
-import javax.validation.Valid;
+package com.citibanamex.mafcs.customercatalog.c080client;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
+
 @Component
 public class C080ClientFallback implements C080Client {
-	
-	public Object getInformationC080(@RequestBody @Valid SqlRequest query) {
-		return null;
-	}
+
+  public Object getInformationC080(@RequestBody @Valid SqlRequest query) {
+    return null;
+  }
 
 }

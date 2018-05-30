@@ -11,24 +11,23 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.errorhandling.exception;
 
-public class DataNotFoundException extends RuntimeException{
+public class DataNotFoundException extends RuntimeException {
 
-	private static final long serialVersionUID = 8913276433744329025L;
-	
-	public DataNotFoundException() {
-		super();
-	}
+  private static final long serialVersionUID = 8913276433744329025L;
 
-	public DataNotFoundException(String message) {
-		super(message);
-	}
+  public DataNotFoundException() {
+    super();
+  }
 
-	public DataNotFoundException(Throwable throwable) {
-		super(throwable);
-	}
-	
-	
+  public DataNotFoundException(String message) {
+    super(message);
+  }
+
+  public DataNotFoundException(Throwable throwable) {
+    super(throwable);
+  }
 
 }

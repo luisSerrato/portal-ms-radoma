@@ -11,6 +11,7 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.viewmodel.lineofbusiness;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -29,17 +30,11 @@ import java.util.List;
 @Setter
 public class LineofBusinessResponse {
 
-	@ApiModelProperty(required = true)
-	public List<LineofBusiness> lineofBusiness;
+  @ApiModelProperty(required = true)
+  public List<LineofBusiness> lineofBusiness;
 
-	public LineofBusinessResponse(){
+  public LineofBusinessResponse() {
 
-	}
-
-	
-
-	public void finalize() throws Throwable {
-
-	}
+  }
 
 }

@@ -11,21 +11,22 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.errorhandling.exception;
 
 public class ValidationException extends RuntimeException {
 
-	private static final long serialVersionUID = 5055749614660328043L;
+  private static final long serialVersionUID = 5055749614660328043L;
 
-	public ValidationException() {
-		super();
-	}
+  public ValidationException() {
+    super();
+  }
 
-	public ValidationException(String message) {
-		super(message);
-	}
+  public ValidationException(String message) {
+    super(message);
+  }
 
-	public ValidationException(Throwable throwable) {
-		super(throwable);
-	}
+  public ValidationException(Throwable throwable) {
+    super(throwable);
+  }
 }

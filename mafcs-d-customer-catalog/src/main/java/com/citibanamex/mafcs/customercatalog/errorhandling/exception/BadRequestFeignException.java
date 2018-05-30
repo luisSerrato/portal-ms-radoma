@@ -11,45 +11,52 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.errorhandling.exception;
 
+import com.netflix.hystrix.exception.HystrixBadRequestException;
 import org.springframework.http.HttpHeaders;
 
-import com.netflix.hystrix.exception.HystrixBadRequestException;
-
-
 public class BadRequestFeignException extends HystrixBadRequestException {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -2302612502922257686L;
-	private final int status;
-    private final HttpHeaders headers;
-    private final String message;
-    private final Throwable cause;
+ 
+  private static final long serialVersionUID = -2302612502922257686L;
+  private final int status;
+  private final HttpHeaders headers;
+  private final String message;
+  private final Throwable cause;
 
-    public BadRequestFeignException(int status, HttpHeaders headers, String message, Throwable cause) {
-        super(message, cause);
-        this.status = status;
-        this.headers = headers;
-        this.message = message;
-        this.cause = cause;
-    }
+  /**
+   * To init a BadRequestFeignException.
+   * @param status.
+   * @param headers.
+   * @param message.
+   * @param cause.
+   */
+  public BadRequestFeignException(int status, HttpHeaders headers, String message,
+      Throwable cause) {
+    super(message, cause);
+    this.status = status;
+    this.headers = headers;
+    this.message = message;
+    this.cause = cause;
+  }
 
-	public int getStatus() {
-		return status;
-	}
+  public int getStatus() {
+    return status;
+  }
 
-	public HttpHeaders getHeaders() {
-		return headers;
-	}
-	@Override
-	public String getMessage() {
-		return message;
-	}
-	@Override
-	public Throwable getCause() {
-		return cause;
-	}
-   
+  public HttpHeaders getHeaders() {
+    return headers;
+  }
+
+  @Override
+  public String getMessage() {
+    return message;
+  }
+
+  @Override
+  public Throwable getCause() {
+    return cause;
+  }
+
 }

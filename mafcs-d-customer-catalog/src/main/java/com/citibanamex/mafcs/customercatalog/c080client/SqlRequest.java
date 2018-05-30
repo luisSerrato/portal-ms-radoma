@@ -11,6 +11,7 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.c080client;
 
 import lombok.Getter;
@@ -20,7 +21,6 @@ import lombok.Setter;
 @Setter
 public class SqlRequest {
 
-	private String sql;
+  private String sql;
 
-		
 }

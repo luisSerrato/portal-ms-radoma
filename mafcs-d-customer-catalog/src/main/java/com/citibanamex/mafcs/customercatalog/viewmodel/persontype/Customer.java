@@ -11,47 +11,47 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.viewmodel.persontype;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-
 /**
- * @author rp90642
- * @version 1.0
- * @created 23-Jan-2018 5:01:54 PM
+ * @author rp90642.
+ * @version 1.0.
+ * @created 23-Jan-2018 5:01:54 PM.
  */
 @Getter
 @Setter
 public class Customer {
 
-	/**
-	 * Description = Residency Status Detail Name
-	 * Example = FISICA NACIONAL EN EL PAIS
-	 * Required = True
-	 */
-	@ApiModelProperty(value = "residencyStatusDetail", required = true)
-	private String residencyStatusDetail;
-	/**
-	 * Description = Residency Status Detail Code
-	 * Example = 1
-	 * Required = True
-	 */
-	@ApiModelProperty(value = "residencyStatusDetailCode", required = true)
-	private int residencyStatusDetailCode;
+  /**
+   * Description = Residency Status Detail Name Example = FISICA NACIONAL EN EL PAIS 
+   * Required = True.
+   */
+  @ApiModelProperty(value = "residencyStatusDetail", required = true)
+  private String residencyStatusDetail;
+  /**
+   * Description = Residency Status Detail Code Example = 1 Required = True.
+   */
+  @ApiModelProperty(value = "residencyStatusDetailCode", required = true)
+  private int residencyStatusDetailCode;
 
-	public Customer(){
+  public Customer() {
 
-	}
+  }
 
-	public Customer(String residencyStatusDetail, int residencyStatusDetailCode) {
-		super();
-		this.residencyStatusDetail = residencyStatusDetail;
-		this.residencyStatusDetailCode = residencyStatusDetailCode;
-	}
-
-
+  /**
+   * To init customer.
+   * @param residencyStatusDetail.
+   * @param residencyStatusDetailCode.
+   */
+  public Customer(String residencyStatusDetail, int residencyStatusDetailCode) {
+    super();
+    this.residencyStatusDetail = residencyStatusDetail;
+    this.residencyStatusDetailCode = residencyStatusDetailCode;
+  }
 
 }

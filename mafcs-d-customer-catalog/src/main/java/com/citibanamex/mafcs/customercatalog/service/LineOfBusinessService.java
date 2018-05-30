@@ -11,10 +11,11 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.service;
 
 import com.citibanamex.mafcs.customercatalog.viewmodel.lineofbusiness.LineofBusinessResponse;
 
 public interface LineOfBusinessService {
-	public LineofBusinessResponse getLineofBusiness(String lineOfBusinessFilter);
+  public LineofBusinessResponse getLineofBusiness(String lineOfBusinessFilter);
 }

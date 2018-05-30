@@ -11,6 +11,7 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.viewmodel.persontype;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -29,16 +30,11 @@ import java.util.List;
 @Setter
 public class PersonTypeResponse {
 
-	@ApiModelProperty (required = true)
-	public List<Customer> customer;
+  @ApiModelProperty(required = true)
+  public List<Customer> customer;
 
-	public PersonTypeResponse(){
-		this.setCustomer(new ArrayList<>());
-	}
-
-	
-	public void finalize() throws Throwable {
-
-	}
+  public PersonTypeResponse() {
+    this.setCustomer(new ArrayList<>());
+  }
 
 }

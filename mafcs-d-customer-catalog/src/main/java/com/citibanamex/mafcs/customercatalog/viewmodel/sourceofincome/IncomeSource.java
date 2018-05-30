@@ -11,45 +11,46 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.viewmodel.sourceofincome;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-
 /**
- * @author rp90642
- * @version 1.0
- * @created 23-Jan-2018 5:01:54 PM
+ * @author rp90642.
+ * @version 1.0.
+ * @created 23-Jan-2018 5:01:54 PM.
  */
 @Getter
 @Setter
 public class IncomeSource {
 
-	/**
-	 * Description = income source name
-	 * Example = 
-	 * Required = True
-	 */
-	@ApiModelProperty(value = "incomeSource", required = true)
-	private String incomeSource;
-	/**
-	 * Description = income source code
-	 * Example = 
-	 * Required = True
-	 */
-	@ApiModelProperty(value = "incomeSourceCode", required = true)
-	private int incomeSourceCode;
+  /**
+   * Description = income source name Example = Required = True.
+   */
+  @ApiModelProperty(value = "incomeSource", required = true)
+  private String incomeSource;
+  /**
+   * Description = income source code Example = Required = True.
+   */
+  @ApiModelProperty(value = "incomeSourceCode", required = true)
+  private int incomeSourceCode;
 
-	public IncomeSource(){
+  public IncomeSource() {
 
-	}
-	
-	public IncomeSource(String incomeSource, int incomeSourceCode) {
-		super();
-		this.incomeSource = incomeSource;
-		this.incomeSourceCode = incomeSourceCode;
-	}
-	
+  }
+
+  /**
+   * To init IncomeSource.
+   * @param incomeSource.
+   * @param incomeSourceCode.
+   */
+  public IncomeSource(String incomeSource, int incomeSourceCode) {
+    super();
+    this.incomeSource = incomeSource;
+    this.incomeSourceCode = incomeSourceCode;
+  }
+
 }

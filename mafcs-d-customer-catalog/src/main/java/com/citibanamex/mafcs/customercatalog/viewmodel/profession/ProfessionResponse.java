@@ -11,6 +11,7 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.viewmodel.profession;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -20,18 +21,18 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * @author jp34651
- * @version 1.0
- * @created 23-Jan-2018 5:01:54 PM
+ * @author jp34651.
+ * @version 1.0.
+ * @created 23-Jan-2018 5:01:54 PM.
  */
 @Getter
 @Setter
 public class ProfessionResponse {
 
-	@ApiModelProperty(required = true)
-	public List<Profession> profession;
+  @ApiModelProperty(required = true)
+  public List<Profession> profession;
 
-	public ProfessionResponse(){
+  public ProfessionResponse() {
 
-	}
+  }
 }

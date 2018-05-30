@@ -11,12 +11,13 @@
  * of this software program are strictly prohibited except by express written agreement with
  * Citigroup.
  */
+
 package com.citibanamex.mafcs.customercatalog.service;
 
 import com.citibanamex.mafcs.customercatalog.viewmodel.persontype.PersonTypeResponse;
 
 public interface TypeOfPersonService {
-	
-	public PersonTypeResponse getTypeOfPerson();
+
+  public PersonTypeResponse getTypeOfPerson();
 
 }
