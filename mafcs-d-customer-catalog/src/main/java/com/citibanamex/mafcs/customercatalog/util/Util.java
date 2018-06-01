@@ -33,6 +33,10 @@ public class Util {
 
   private static final Logger LOG = LoggerFactory.getLogger(Util.class);
 
+  private Util(){
+    // Private constructor
+  }
+  
   /**
    * To process c080 response.
    * @param response.
@@ -40,7 +44,7 @@ public class Util {
    * @param datos.
    */
   @SuppressWarnings("unchecked")
-  public static void resultC080CamposMasDatos(Object response, HashMap<String, Object> campos,
+  public static void resultC080CamposMasDatos(Object response, Map<String, Object> campos,
       List<Object> datos) {
 
     Result result = responseMicroServicesToResult(response);
@@ -103,16 +107,17 @@ public class Util {
   public static String validateFilter(String filter, String varName) {
 
     LOG.debug(varName + ":" + filter);
-    filter = filter.replaceAll(",{2,}", ",").replaceAll("\\s{2,}", " ").trim().toUpperCase();
-    if (filter.equals("") || filter == null || filter.length() == 0) {
+    String filterAux  = filter.replaceAll(",{2,}", ",")
+        .replaceAll("\\s{2,}", " ").trim().toUpperCase();
+    if (filterAux == null || "".equals(filterAux) || filterAux.length() == 0) {
       return "";
     }
-    if (filter.length() < 3 || filter.length() > 12) {
+    if (filterAux.length() < 3 || filterAux.length() > 12) {
       throw new FilterFormatException(Constants.FILTER_WRONG_FORMAT, varName);
     }
-    if (!filter.matches("[a-zA-Z0-9ÁÉÍÓÚáéíóúÑñ,\\s]+")) {
+    if (!filterAux.matches("[a-zA-Z0-9ÁÉÍÓÚáéíóúÑñ,\\s]+")) {
       throw new FilterFormatException(Constants.FILTER_WRONG_FORMAT, varName);
     }
-    return filter;
+    return filterAux;
   }
 }

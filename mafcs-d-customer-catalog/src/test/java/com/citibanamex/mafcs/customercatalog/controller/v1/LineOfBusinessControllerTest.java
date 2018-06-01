@@ -1,7 +1,8 @@
 package com.citibanamex.mafcs.customercatalog.controller.v1;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.citibanamex.mafcs.customercatalog.service.LineOfBusinessService;
+import com.citibanamex.mafcs.customercatalog.viewmodel.lineofbusiness.LineofBusiness;
+import com.citibanamex.mafcs.customercatalog.viewmodel.lineofbusiness.LineofBusinessResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,9 +22,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import com.citibanamex.mafcs.customercatalog.service.LineOfBusinessService;
-import com.citibanamex.mafcs.customercatalog.viewmodel.lineofbusiness.LineofBusiness;
-import com.citibanamex.mafcs.customercatalog.viewmodel.lineofbusiness.LineofBusinessResponse;
+import org.springframework.web.util.NestedServletException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = ProfessionController.class)
@@ -63,6 +65,7 @@ public class LineOfBusinessControllerTest {
         .thenReturn(lineOfBusinessResponse);
     this.mockMvc.perform(MockMvcRequestBuilders
         .get("/api/private/v1/consumer-services/catalogs/customers/occupation/sector")
+        .header("uuid", "1234-test")
         .param("professionFilter", professionFilter).contentType(MediaType.APPLICATION_JSON_UTF8)
         .contentType(MediaType.APPLICATION_JSON_UTF8))
         .andExpect(
@@ -79,6 +82,24 @@ public class LineOfBusinessControllerTest {
         .thenReturn(lineOfBusinessResponse);
     this.mockMvc.perform(MockMvcRequestBuilders
         .get("/api/private/v1/consumer-services/catalogs/customers/occupation/sector")
+        .header("uuid", "1234-test")
+        .param("professionFilter", professionFilter).contentType(MediaType.APPLICATION_JSON_UTF8)
+        .contentType(MediaType.APPLICATION_JSON_UTF8))
+        .andExpect(
+            MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+        .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
+
+  }
+  
+  @Test(expected = NestedServletException.class)
+  public void testTypeOfPersonResponseNoUuid() throws Exception {
+
+    String professionFilter = "emp";
+    Mockito.when(lineOfBusinessService.getLineofBusiness(Mockito.any()))
+        .thenReturn(lineOfBusinessResponse);
+    this.mockMvc.perform(MockMvcRequestBuilders
+        .get("/api/private/v1/consumer-services/catalogs/customers/occupation/sector")
+        .header("uuid", "")
         .param("professionFilter", professionFilter).contentType(MediaType.APPLICATION_JSON_UTF8)
         .contentType(MediaType.APPLICATION_JSON_UTF8))
         .andExpect(

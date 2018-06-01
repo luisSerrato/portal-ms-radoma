@@ -33,6 +33,6 @@ public class ProfessionResponse {
   public List<Profession> profession;
 
   public ProfessionResponse() {
-
+    // Public constructor
   }
 }

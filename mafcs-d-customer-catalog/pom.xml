@@ -30,7 +30,7 @@
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
 		<sonar.coverage.exclusions>
-		**/exception/*, **/viewmodel/*				
+		**/errorhandling/exception/*, **/viewmodel/*				
 		</sonar.coverage.exclusions>
 	</properties>
 
@@ -146,7 +146,7 @@
 				<configuration>
 					<excludes>
 						<exclude>com/citibanamex/mafcs/customercatalog/viewmodel/**/**/*</exclude>
-						<exclude>com/citibanamex/mafcs/customercatalog/errorhandling/**/*</exclude>
+						<exclude>com/citibanamex/mafcs/customercatalog/errorhandling/exception/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
@@ -289,7 +289,7 @@
 						<!-- <exclude>com/citi/mx/ccportal/mfa/util/ServiceHeaderConstants.class</exclude> -->
 						<!-- <exclude>com/citi/mx/ccportal/mfa/exception/WsHostException.class</exclude> -->
 						<exclude>com/citibanamex/mafcs/customercatalog/viewmodel/**/**/*</exclude>
-						<exclude>com/citibanamex/mafcs/customercatalog/errorhandling/**/*</exclude>
+						<exclude>com/citibanamex/mafcs/customercatalog/errorhandling/exception/*</exclude>
 					</excludes>
 				</configuration>
 				<reportSets>

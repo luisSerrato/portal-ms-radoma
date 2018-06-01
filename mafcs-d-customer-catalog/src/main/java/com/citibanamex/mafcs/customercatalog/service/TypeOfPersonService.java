@@ -18,6 +18,6 @@ import com.citibanamex.mafcs.customercatalog.viewmodel.persontype.PersonTypeResp
 
 public interface TypeOfPersonService {
 
-  public PersonTypeResponse getTypeOfPerson();
+  PersonTypeResponse getTypeOfPerson();
 
 }

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 
-@Component
+@Component("C080ClientFallback")
 public class C080ClientFallback implements C080Client {
 
   public Object getInformationC080(@RequestBody @Valid SqlRequest query) {

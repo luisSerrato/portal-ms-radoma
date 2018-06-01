@@ -2,12 +2,21 @@
 
 ## Description
 
-    Product lookup
-
-1. Retrieve the Line Of Business
-2. Retrieve the Profession
-3. Retrieve the Source Of Income
-4. Retrieve the Person Type
+    LineOfBusinessController
+1. getLineOfBusiness
+	._ Retrieve the Line Of Business
+	
+	ProfessionController
+2. getProfession	
+	._ Retrieve the Profession
+	
+	SourceOfIncomeController	
+3. sourceOfIncome
+	._ Retrieve the Source Of Income
+	
+	TypeOfPersonController
+4. personType	
+	._ Retrieve the Person Type
 
 ### Versioning
 
@@ -45,14 +54,31 @@ May/28/2018 by Luis Serrato
 
 ### Endpoints
 
-There is only one Endpoint:
 
 | Endpoints  |
 |--|--|
-| /api/v1/consumerServices/productServices/labelCatalogs/{bankIdentificationNumber}  |
-
+| /api/private/v1/consumer-services/catalogs/customers/occupation/sector  |
 
 ### Request data
+RequestMethod = GET
+	RequestParam lineOfBusinessFilter
+
+| /api/private/v1/consumer-services/catalogs/customers/profession  |
+
+### Request data
+RequestMethod = GET
+	RequestParam professionFilter
+	
+| /api/private/v1/consumer-services/catalogs/customers/income/source  |
+
+### Request data
+RequestMethod = GET
+
+| /api/private/v1/consumer-services/catalogs/customers/resident/status  |
+
+### Request data
+RequestMethod = GET
+
 
 URL2:
 

@@ -25,6 +25,6 @@ import javax.validation.Valid;
 public interface C080Client {
 
   @RequestMapping(value = "/connwl/services/getSql80", method = RequestMethod.POST)
-  public Object getInformationC080(@RequestBody @Valid SqlRequest query);
+  Object getInformationC080(@RequestBody @Valid SqlRequest query);
 
 }

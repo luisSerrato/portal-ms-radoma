@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.util.NestedServletException;
 import com.citibanamex.mafcs.customercatalog.service.ProfessionService;
 import com.citibanamex.mafcs.customercatalog.viewmodel.profession.Profession;
 import com.citibanamex.mafcs.customercatalog.viewmodel.profession.ProfessionResponse;
@@ -62,6 +63,7 @@ public class ProfessionControllerTest {
     Mockito.when(professionService.getProfession(Mockito.any())).thenReturn(professionResponse);
     this.mockMvc.perform(MockMvcRequestBuilders
         .get("/api/private/v1/consumer-services/catalogs/customers/profession")
+        .header("uuid", "1234-test")
         .param("professionFilter", professionFilter).contentType(MediaType.APPLICATION_JSON_UTF8)
         .contentType(MediaType.APPLICATION_JSON_UTF8))
         .andExpect(
@@ -78,12 +80,30 @@ public class ProfessionControllerTest {
     this.mockMvc.perform(MockMvcRequestBuilders
         .get("/api/private/v1/consumer-services/catalogs/customers/profession")
         .param("professionFilter", professionFilter).contentType(MediaType.APPLICATION_JSON_UTF8)
+        .header("uuid", "1234-test")
         .contentType(MediaType.APPLICATION_JSON_UTF8))
         .andExpect(
             MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
         .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
 
   }
+  
+  @Test(expected = NestedServletException.class)
+  public void testTypeOfPersonResponseNoUuid() throws Exception {
+
+    String professionFilter = "emp";
+    Mockito.when(professionService.getProfession(Mockito.any())).thenReturn(professionResponse);
+    this.mockMvc.perform(MockMvcRequestBuilders
+        .get("/api/private/v1/consumer-services/catalogs/customers/profession")
+        .param("professionFilter", professionFilter).contentType(MediaType.APPLICATION_JSON_UTF8)
+        .header("uuid", "")
+        .contentType(MediaType.APPLICATION_JSON_UTF8))
+        .andExpect(
+            MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+        .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
+
+  }
+
 
   @After
   public void cleanUp() {

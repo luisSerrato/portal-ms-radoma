@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.util.NestedServletException;
 import com.citibanamex.mafcs.customercatalog.service.TypeOfPersonService;
 import com.citibanamex.mafcs.customercatalog.viewmodel.persontype.Customer;
 import com.citibanamex.mafcs.customercatalog.viewmodel.persontype.PersonTypeResponse;
@@ -63,7 +64,21 @@ public class TypeOfPersonControllerTest {
     Mockito.when(typeOfPersonService.getTypeOfPerson()).thenReturn(personTypeResponse);
     this.mockMvc
         .perform(MockMvcRequestBuilders
-            .get("/api/private/v1/consumer-services/catalogs/customers/resident/status"))
+            .get("/api/private/v1/consumer-services/catalogs/customers/resident/status")
+            .header("uuid", "1234-test"))
+        .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8))
+        .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
+
+  }
+  
+  @Test(expected = NestedServletException.class)
+  public void testTypeOfPersonResponseNoUuid() throws Exception {
+
+    Mockito.when(typeOfPersonService.getTypeOfPerson()).thenReturn(personTypeResponse);
+    this.mockMvc
+        .perform(MockMvcRequestBuilders
+            .get("/api/private/v1/consumer-services/catalogs/customers/resident/status")
+            .header("uuid", ""))
         .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8))
         .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
 

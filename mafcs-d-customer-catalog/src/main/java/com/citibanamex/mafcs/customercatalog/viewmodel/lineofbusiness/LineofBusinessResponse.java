@@ -34,7 +34,7 @@ public class LineofBusinessResponse {
   public List<LineofBusiness> lineofBusiness;
 
   public LineofBusinessResponse() {
-
+    // Public constructor
   }
 
 }

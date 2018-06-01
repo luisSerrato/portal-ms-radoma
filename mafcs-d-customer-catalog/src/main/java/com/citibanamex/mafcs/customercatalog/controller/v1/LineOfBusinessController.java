@@ -14,6 +14,7 @@
 
 package com.citibanamex.mafcs.customercatalog.controller.v1;
 
+import com.citibanamex.mafcs.customercatalog.errorhandling.exception.ValidationException;
 import com.citibanamex.mafcs.customercatalog.service.LineOfBusinessService;
 import com.citibanamex.mafcs.customercatalog.util.Util;
 import com.citibanamex.mafcs.customercatalog.viewmodel.lineofbusiness.LineofBusinessResponse;
@@ -21,6 +22,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +73,10 @@ public class LineOfBusinessController {
     LOG.info("client-id {}, Authorization {}, uuid {}, lineOfBusinessFilter {} ", clientId,
         authorization, uuid, lineOfBusinessFilter);
 
+    if (StringUtils.isEmpty(uuid)) {
+      throw new ValidationException("Header uuid may not be empty");
+    }
+    
     long t0 = System.currentTimeMillis();
     LineofBusinessResponse response = lineOfBusinessService
         .getLineofBusiness(Util.validateFilter(lineOfBusinessFilter, "lineOfBusinessFilter"));

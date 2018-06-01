@@ -15,22 +15,26 @@
 package com.citibanamex.mafcs.customercatalog.util;
 
 public final class Constants {
+  
+  private Constants(){
+    //Private constructor
+  }
 
   /* SQL */
-  public static final String SQL_HERA_SourceOfIncome_BY_ID =
+  public static final String SQL_HERA_SOURCEOFINCOME_BY_ID =
       "SELECT OCUPACI, UPPER(D_LARGA) AS D_LARGA FROM D000475 WHERE OCUPACI IN "
           + "(1,2,4,6,13,14,40) ORDER BY D_LARGA ASC";
-  public static final String SQL_HERA_Profession_GET_ALL =
+  public static final String SQL_HERA_PROFESSION_GET_ALL =
       "SELECT PALABRA, UPPER(DESCRIP) as DESCRIP FROM L000036 WHERE PALABRA IN "
           + "(453,370,595,436,447,765,437,448,766,860,661,1103,924,925,100,368,"
           + "849,918,627,493,66,831,535,1032,442,444,404,345,65,721,477,411,1034,"
           + "964,545,536,1033,346,614,605,95,817) ORDER BY OCUPACI ASC";
-  public static final String SQL_HERA_Profession_BY_DESC =
+  public static final String SQL_HERA_PROFESSION_BY_DESC =
       "SELECT PALABRA, UPPER(DESCRIP) as DESCRIP FROM L000036 WHERE PALABRA IN "
           + "(453,370,595,436,447,765,437,448,766,860,661,1103,924,925,100,368,"
           + "849,918,627,493,66,831,535,1032,442,444,404,345,65,721,477,411,1034,"
           + "964,545,536,1033,346,614,605,95,817) ";
-  public static final String SQL_HERA_LineOfBussiness_BY_DESC =
+  public static final String SQL_HERA_LINEOFBUSINESS_BY_DESC =
       "SELECT PALABRA, UPPER(DESCRIP) as DESCRIP FROM L000037 WHERE PALABRA NOT IN "
           + "( 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 118, 119, "
           + "120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134,"
@@ -128,7 +132,7 @@ public final class Constants {
   public static final String SQL_HERA_TypeOfPerson_BY_ID =
       "SELECT PERSONA, UPPER(D_LARGA) as D_LARGA FROM D000012 WHERE PERSONA IN "
           + "(1, 3, 7) ORDER BY PERSONA ASC";
-  public static final String SQL_HERA_LineOfBussiness_GET_ALL;
+  public static final String SQL_HERA_LINEOFBUSINESS_GET_ALL;
 
 
   /* MSG */
@@ -153,7 +157,7 @@ public final class Constants {
   public static final String CCC080CUSTOMERCLIENTEXCEPTION_ERROR_CODE = "PME-523";
 
   static {
-    SQL_HERA_LineOfBussiness_GET_ALL =
+    SQL_HERA_LINEOFBUSINESS_GET_ALL =
         "SELECT PALABRA, UPPER(DESCRIP) as DESCRIP FROM L000037 WHERE PALABRA NOT IN "
             + "( 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 118, 119, 120, "
             + "121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, "

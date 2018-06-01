@@ -14,11 +14,8 @@
 
 package com.citibanamex.mafcs.customercatalog.service.impl;
 
-import com.citibanamex.itmt.ccutil.utils.Utils;
-import com.citibanamex.mafcs.customercatalog.c080client.C080Client;
-import com.citibanamex.mafcs.customercatalog.c080client.SqlRequest;
-import com.citibanamex.mafcs.customercatalog.errorhandling.exception.CcC080CustomerClientException;
 import com.citibanamex.mafcs.customercatalog.service.TypeOfPersonService;
+import com.citibanamex.mafcs.customercatalog.util.C080HeraFormatter;
 import com.citibanamex.mafcs.customercatalog.util.Constants;
 import com.citibanamex.mafcs.customercatalog.util.Util;
 import com.citibanamex.mafcs.customercatalog.viewmodel.persontype.Customer;
@@ -38,8 +35,8 @@ public class TypeOfPersonServiceImpl implements TypeOfPersonService {
   private static final Logger LOG = LoggerFactory.getLogger(TypeOfPersonServiceImpl.class);
 
   @Autowired
-  private C080Client c080Client;
-
+  private C080HeraFormatter heraFormatter;
+  
   @SuppressWarnings("unchecked")
   @Override
   public PersonTypeResponse getTypeOfPerson() {
@@ -47,7 +44,7 @@ public class TypeOfPersonServiceImpl implements TypeOfPersonService {
     LOG.info("CustomerCatalog-TypeOfPersonService");
     LOG.debug("QueryExecuted: " + Constants.SQL_HERA_TypeOfPerson_BY_ID);
 
-    Object responseC080 = getDataFromC080(Constants.SQL_HERA_TypeOfPerson_BY_ID);
+    Object responseC080 = heraFormatter.getDataFromC080(Constants.SQL_HERA_TypeOfPerson_BY_ID);
     HashMap<String, Object> campos = new HashMap<>();
     List<Object> personTypeAux = new ArrayList<>();
     List<Customer> personTypeList = new ArrayList<Customer>();
@@ -69,22 +66,6 @@ public class TypeOfPersonServiceImpl implements TypeOfPersonService {
     PersonTypeResponse response = new PersonTypeResponse();
     response.setCustomer(personTypeList);
     return response;
-  }
-
-  private Object getDataFromC080(String sql) {
-
-    SqlRequest sqlRequest = new SqlRequest();
-    sqlRequest.setSql(sql);
-    long t0 = System.currentTimeMillis();
-    Object responseDescripcion = c080Client.getInformationC080(sqlRequest);
-    LOG.info(
-        "Time elapsed c080Client.getInformationC080: " + (System.currentTimeMillis() - t0) + " ms");
-    LOG.info("responseDescripcion: " + Utils.getJson(responseDescripcion));
-    if (responseDescripcion == null) {
-      throw new CcC080CustomerClientException("System C080 back unavailable");
-    }
-
-    return responseDescripcion;
   }
 
 }

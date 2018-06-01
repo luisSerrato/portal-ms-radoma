@@ -14,22 +14,31 @@
 
 package com.citibanamex.mafcs.customercatalog.util;
 
+import com.citibanamex.itmt.ccutil.utils.Utils;
+import com.citibanamex.mafcs.customercatalog.c080client.C080Client;
+import com.citibanamex.mafcs.customercatalog.c080client.SqlRequest;
+import com.citibanamex.mafcs.customercatalog.errorhandling.exception.CcC080CustomerClientException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
 @Service
-public class HeraFormatter {
+public class C080HeraFormatter {
 
-  private static final Logger LOG = LoggerFactory.getLogger(HeraFormatter.class);
+  private static final Logger LOG = LoggerFactory.getLogger(C080HeraFormatter.class);
 
   private static HashMap<String, String> CI_SOURCE_OF_INCOME = new HashMap<String, String>();
   private static HashMap<String, String> CI_PROFESSION = new HashMap<String, String>();
   private static HashMap<String, String> CI_LINE_OF_BUSINESS = new HashMap<String, String>();
 
-  public HeraFormatter() {
+  @Autowired
+  private C080Client c080Client;
+
+  
+  public C080HeraFormatter() {
     initCatalogoLineOfBussiness();
   }
 
@@ -2719,6 +2728,27 @@ public class HeraFormatter {
     CI_LINE_OF_BUSINESS.put("3260", "13");
     CI_LINE_OF_BUSINESS.put("3261", "13");
 
+  }
+  
+  /**
+   * Get data from c080 by sql query.
+   * @param sql.
+   * @return Object.
+   */
+  public Object getDataFromC080(String sql) {
+
+    SqlRequest sqlRequest = new SqlRequest();
+    sqlRequest.setSql(sql);
+    long t0 = System.currentTimeMillis();
+    Object responseDescripcion = c080Client.getInformationC080(sqlRequest);
+    LOG.info(
+        "Time elapsed c080Client.getInformationC080: " + (System.currentTimeMillis() - t0) + " ms");
+    LOG.info("responseDescripcion: " + Utils.getJson(responseDescripcion));
+    if (responseDescripcion == null) {
+      throw new CcC080CustomerClientException("System C080 back unavailable");
+    }
+
+    return responseDescripcion;
   }
 
   public String getCiLineOfBusiness(String key) {

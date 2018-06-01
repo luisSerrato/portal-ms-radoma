@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.util.NestedServletException;
 import com.citibanamex.mafcs.customercatalog.service.SourceOfIncomeService;
 import com.citibanamex.mafcs.customercatalog.viewmodel.sourceofincome.IncomeSource;
 import com.citibanamex.mafcs.customercatalog.viewmodel.sourceofincome.SourceOfIncomeResponse;
@@ -63,12 +64,27 @@ public class SourceOfIncomeControllerTest {
     Mockito.when(sourceOfIncomeService.getSourceOfIncome()).thenReturn(sourceOfIncomeResponse);
     this.mockMvc
         .perform(MockMvcRequestBuilders
-            .get("/api/private/v1/consumer-services/catalogs/customers/income/source"))
+            .get("/api/private/v1/consumer-services/catalogs/customers/income/source")
+            .header("uuid", "1234-test"))
         .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8))
         .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
 
   }
 
+  @Test(expected = NestedServletException.class)
+  public void testTypeOfPersonResponseNoUuid() throws Exception {
+
+    Mockito.when(sourceOfIncomeService.getSourceOfIncome()).thenReturn(sourceOfIncomeResponse);
+    this.mockMvc
+        .perform(MockMvcRequestBuilders
+            .get("/api/private/v1/consumer-services/catalogs/customers/income/source")
+            .header("uuid", ""))
+        .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8))
+        .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
+
+  }
+
+  
   @After
   public void cleanUp() {
 
